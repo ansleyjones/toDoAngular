@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+</head>
+<body ng-app>
+
+  <div class="container" ng-controller="MainController">
+    <h1>todos</h1>
+
+        <div class="top"></div>
+
+      <section>
+        <article class="topInput">
+          <div class="newTodo">
+            <a href="" id="itemSubmit" ng-click="addItem(newItem)"><i class="fa fa-angle-double-down fa-3x"></i></a>
+            <input type="text" ng-model="newItem.name" class = "listItem" placeholder="What needs to be done?" required>
+          </div>
+        </article>
+
+        <article class="inputArea">
+          <p ng-repeat="todo in todoItems" class="displayInput">
+            <a href="" class="check" ng-click="strike={'text-decoration':'line-through'}; checked='green'; updateActive(todo)"><i class="fa fa-check fa-2x" ng-class="checked"></i></a>
+            <span ng-dblclick="show={'display':'inline-block'}" ng-style="strike" ng-class="done">{{ todo.name }}</span>
+            <a href="" class="ex hide" ng-click="remove(todo)" ng-style="show"><i class="fa fa-times fa-2x"></i></a>
+            <span class="editListItem">
+              <input type="text" class="listEdit hide" placeholder="{{ todo.name }}" ng-style="show" ng-model="updItem.name">
+              <input type="submit" value="Submit" class="editSubmit hide" ng-style="show" ng-click="update(todo, updItem)">
+            </span>
+          </p>
+        </article>
+
+
+        <div class="mid">
+
+        </div>
+
+
+        <nav class="tabNav">
+          <span class="itemCount">{{todoItems.length - counter()}} items left</span>
+          <a ng-click="" class="all" href="">All</a>
+          <a ng-click="" class="incomplete" href="">Active</a>
+          <a ng-click="" class="complete" href="">Completed</a>
+          <button class="clear" ng-click="removeCompleted(todoItems)">Clear Completed ({{counter()}})</button>
+        </nav>
+
+    </section>
+
+
+  </div>
+
+  <script src="bower_components/angular/angular.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
